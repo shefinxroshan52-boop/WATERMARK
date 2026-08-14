@@ -469,7 +469,7 @@ export const CanvasEditor: React.FC<CanvasEditorProps> = ({
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
-      className="flex-1 relative bg-[#0a0a0b] overflow-hidden flex items-center justify-center select-none cursor-crosshair bg-[radial-gradient(#1f1f21_1px,transparent_1px)] [background-size:20px_20px]"
+      className="flex-1 relative bg-slate-950 overflow-hidden flex items-center justify-center select-none cursor-crosshair"
       style={{
         cursor:
           isPanning || tool === 'pan'
@@ -481,10 +481,20 @@ export const CanvasEditor: React.FC<CanvasEditorProps> = ({
             : 'crosshair',
       }}
     >
+      {/* Background Subtle Checkerboard Pattern */}
+      <div 
+        className="absolute inset-0 opacity-15 pointer-events-none" 
+        style={{
+          backgroundImage: `linear-gradient(45deg, #1e293b 25%, transparent 25%), linear-gradient(-45deg, #1e293b 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #1e293b 75%), linear-gradient(-45deg, transparent 75%, #1e293b 75%)`,
+          backgroundSize: '24px 24px',
+          backgroundPosition: '0 0, 0 12px, 12px -12px, -12px 0px'
+        }}
+      />
+
       {/* Main Canvas Viewport Area */}
       {imageState ? (
         <div
-          className="relative transition-transform duration-75 shadow-2xl rounded-xl overflow-visible"
+          className="relative transition-transform duration-75 shadow-2xl rounded-lg overflow-visible"
           style={{
             transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})`,
             transformOrigin: 'center center',
@@ -494,7 +504,7 @@ export const CanvasEditor: React.FC<CanvasEditorProps> = ({
           <canvas
             ref={displayCanvasRef}
             id="main-display-canvas"
-            className="block max-w-none rounded-xl bg-[#161618] shadow-2xl ring-1 ring-[#2a2a2c]"
+            className="block max-w-none rounded-lg bg-slate-900 shadow-2xl ring-1 ring-slate-800"
           />
 
           {/* Hidden Offscreen Source & Mask Canvases */}
@@ -508,7 +518,7 @@ export const CanvasEditor: React.FC<CanvasEditorProps> = ({
               className="absolute top-0 bottom-0 pointer-events-none"
               style={{ left: `${splitPos * 100}%` }}
             >
-              <div className="w-7 h-7 -ml-3.5 top-1/2 -mt-3.5 absolute rounded-full bg-[#1a1a1c] border border-[#3a3a3c] text-white shadow-xl flex items-center justify-center text-[10px] font-bold ring-2 ring-[#6366f1]/40">
+              <div className="w-8 h-8 -ml-4 top-1/2 -mt-4 absolute rounded-full bg-white text-slate-900 shadow-xl flex items-center justify-center text-xs font-bold ring-2 ring-indigo-500/50">
                 ⟷
               </div>
             </div>
@@ -516,16 +526,16 @@ export const CanvasEditor: React.FC<CanvasEditorProps> = ({
         </div>
       ) : (
         /* Empty State / Upload Dropzone */
-        <div className="max-w-md w-full mx-4 p-8 rounded-2xl bg-[#111112] border border-[#2a2a2c] text-center space-y-6 shadow-2xl z-10">
-          <div className="w-16 h-16 rounded-xl bg-[#1a1a1c] border border-[#2a2a2c] text-[#6366f1] mx-auto flex items-center justify-center shadow-inner">
+        <div className="max-w-md w-full mx-4 p-8 rounded-2xl bg-slate-900/80 border border-slate-800 backdrop-blur-xl text-center space-y-6 shadow-2xl z-10">
+          <div className="w-16 h-16 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 mx-auto flex items-center justify-center shadow-inner">
             <UploadCloud className="w-8 h-8" />
           </div>
 
           <div className="space-y-2">
-            <h2 className="text-xl font-semibold text-white tracking-tight">
+            <h2 className="text-xl font-bold text-white tracking-tight">
               Drop an Image to Remove Watermark
             </h2>
-            <p className="text-xs text-[#a1a1aa] max-w-xs mx-auto leading-relaxed">
+            <p className="text-xs text-slate-400 max-w-xs mx-auto leading-relaxed">
               Drag & drop any photo or document, or pick one of our instant realistic sample presets.
             </p>
           </div>
@@ -534,7 +544,7 @@ export const CanvasEditor: React.FC<CanvasEditorProps> = ({
             <button
               id="empty-state-upload-btn"
               onClick={() => document.getElementById('file-upload-input')?.click()}
-              className="px-5 py-2.5 rounded-lg bg-[#6366f1] hover:bg-[#4f46e5] text-white text-xs font-semibold shadow-lg shadow-indigo-500/10 transition-all active:scale-95 flex items-center justify-center gap-2"
+              className="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold shadow-lg shadow-indigo-600/30 transition-all active:scale-95 flex items-center justify-center gap-2"
             >
               <UploadCloud className="w-4 h-4" />
               <span>Select File from Device</span>
@@ -543,16 +553,16 @@ export const CanvasEditor: React.FC<CanvasEditorProps> = ({
             <button
               id="empty-state-presets-btn"
               onClick={onOpenPresets}
-              className="px-5 py-2.5 rounded-lg bg-[#161618] hover:bg-[#1f1f21] text-[#e2e2e4] text-xs font-medium border border-[#2a2a2c] hover:border-[#3a3a3c] transition-colors flex items-center justify-center gap-2"
+              className="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-750 text-slate-200 text-xs font-semibold border border-slate-700 transition-all flex items-center justify-center gap-2"
             >
-              <Sparkles className="w-4 h-4 text-[#6366f1]" />
+              <Sparkles className="w-4 h-4 text-indigo-400" />
               <span>Explore Sample Watermarks</span>
             </button>
           </div>
 
-          <div className="pt-4 border-t border-[#2a2a2c] text-[11px] text-[#52525b] flex items-center justify-center gap-4">
+          <div className="pt-4 border-t border-slate-800/80 text-[11px] text-slate-500 flex items-center justify-center gap-4">
             <span>✓ High-Res PNG / JPG / WebP</span>
-            <span>✓ Local Engine Processing</span>
+            <span>✓ 100% Client-Side Inpainting</span>
           </div>
         </div>
       )}
@@ -566,33 +576,33 @@ export const CanvasEditor: React.FC<CanvasEditorProps> = ({
             top: `${cursorPos.y}px`,
             width: `${brushSize * zoom}px`,
             height: `${brushSize * zoom}px`,
-            borderColor: tool === 'brush' ? '#ef4444' : '#6366f1',
-            backgroundColor: tool === 'brush' ? 'rgba(239, 68, 68, 0.15)' : 'rgba(99, 102, 241, 0.15)',
-            boxShadow: '0 0 0 1px rgba(0,0,0,0.6)',
+            borderColor: tool === 'brush' ? '#ef4444' : '#38bdf8',
+            backgroundColor: tool === 'brush' ? 'rgba(239, 68, 68, 0.15)' : 'rgba(56, 189, 248, 0.15)',
+            boxShadow: '0 0 0 1px rgba(0,0,0,0.4)',
           }}
         />
       )}
 
       {/* Dragging File Visual Overlay */}
       {isDraggingFile && (
-        <div className="absolute inset-0 bg-[#0a0a0b]/90 border-2 border-dashed border-[#6366f1] backdrop-blur-sm z-40 flex items-center justify-center text-white">
+        <div className="absolute inset-0 bg-indigo-950/70 border-4 border-dashed border-indigo-500 backdrop-blur-sm z-40 flex items-center justify-center text-white">
           <div className="text-center space-y-3">
-            <UploadCloud className="w-16 h-16 text-[#6366f1] mx-auto animate-bounce" />
-            <h3 className="text-xl font-semibold">Release to Load Image</h3>
+            <UploadCloud className="w-16 h-16 text-indigo-400 mx-auto animate-bounce" />
+            <h3 className="text-2xl font-bold">Release to Load Image</h3>
           </div>
         </div>
       )}
 
       {/* Floating Top Floating Comparison Bar */}
       {imageState && imageState.resultSrc && (
-        <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-[#111112]/90 border border-[#2a2a2c] backdrop-blur-md rounded-lg p-1 flex items-center gap-1 shadow-2xl z-30">
+        <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-slate-900/90 border border-slate-800 backdrop-blur-md rounded-2xl p-1.5 flex items-center gap-1 shadow-2xl z-30">
           <button
             id="viewmode-split-btn"
             onClick={() => setViewMode('split')}
-            className={`px-3 py-1.5 rounded-md text-xs font-medium flex items-center gap-1.5 transition-colors ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all ${
               viewMode === 'split'
-                ? 'bg-[#2a2a2c] text-white border border-[#3a3a3c]'
-                : 'text-[#71717a] hover:text-[#e2e2e4] hover:bg-[#1a1a1c]'
+                ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
+                : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
             }`}
           >
             <Split className="w-3.5 h-3.5" />
@@ -602,10 +612,10 @@ export const CanvasEditor: React.FC<CanvasEditorProps> = ({
           <button
             id="viewmode-result-btn"
             onClick={() => setViewMode('result')}
-            className={`px-3 py-1.5 rounded-md text-xs font-medium flex items-center gap-1.5 transition-colors ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all ${
               viewMode === 'result'
-                ? 'bg-[#2a2a2c] text-white border border-[#3a3a3c]'
-                : 'text-[#71717a] hover:text-[#e2e2e4] hover:bg-[#1a1a1c]'
+                ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
+                : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
             }`}
           >
             <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
@@ -615,10 +625,10 @@ export const CanvasEditor: React.FC<CanvasEditorProps> = ({
           <button
             id="viewmode-mask-btn"
             onClick={() => setViewMode('mask-overlay')}
-            className={`px-3 py-1.5 rounded-md text-xs font-medium flex items-center gap-1.5 transition-colors ${
+            className={`px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all ${
               viewMode === 'mask-overlay'
-                ? 'bg-[#2a2a2c] text-white border border-[#3a3a3c]'
-                : 'text-[#71717a] hover:text-[#e2e2e4] hover:bg-[#1a1a1c]'
+                ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
+                : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
             }`}
           >
             <Paintbrush className="w-3.5 h-3.5" />
@@ -631,28 +641,28 @@ export const CanvasEditor: React.FC<CanvasEditorProps> = ({
             onPointerDown={() => setIsComparingOriginal(true)}
             onPointerUp={() => setIsComparingOriginal(false)}
             onPointerLeave={() => setIsComparingOriginal(false)}
-            className="px-3 py-1.5 rounded-md text-xs font-medium bg-[#161618] hover:bg-[#1f1f21] active:bg-[#2a2a2c] text-[#a1a1aa] hover:text-white border border-[#2a2a2c] transition-colors flex items-center gap-1.5 select-none"
+            className="px-3 py-1.5 rounded-xl text-xs font-semibold bg-slate-800 hover:bg-slate-750 active:bg-indigo-600 active:text-white text-slate-300 border border-slate-700/60 transition-all flex items-center gap-1.5 select-none"
             title="Press and hold to view the original image with watermark"
           >
-            <Eye className="w-3.5 h-3.5 text-[#6366f1]" />
+            <Eye className="w-3.5 h-3.5 text-indigo-400" />
             <span>Hold to Compare</span>
           </button>
         </div>
       )}
 
       {/* Floating Keyboard Shortcuts Hint (Bottom Left) */}
-      <div className="absolute bottom-4 left-4 hidden md:flex items-center gap-3 bg-[#111112]/90 border border-[#2a2a2c] backdrop-blur-md px-3 py-1.5 rounded-lg text-[11px] text-[#71717a] pointer-events-none">
+      <div className="absolute bottom-4 left-4 hidden md:flex items-center gap-3 bg-slate-900/80 border border-slate-800/80 backdrop-blur-md px-3 py-1.5 rounded-xl text-[11px] text-slate-400 pointer-events-none">
         <span className="flex items-center gap-1">
-          <kbd className="px-1.5 py-0.5 rounded bg-[#1a1a1c] border border-[#2a2a2c] font-mono text-[10px] text-[#a1a1aa]">B</kbd> Brush
+          <kbd className="px-1.5 py-0.5 rounded bg-slate-950 border border-slate-800 font-mono text-[10px] text-slate-300">B</kbd> Brush
         </span>
         <span className="flex items-center gap-1">
-          <kbd className="px-1.5 py-0.5 rounded bg-[#1a1a1c] border border-[#2a2a2c] font-mono text-[10px] text-[#a1a1aa]">E</kbd> Eraser
+          <kbd className="px-1.5 py-0.5 rounded bg-slate-950 border border-slate-800 font-mono text-[10px] text-slate-300">E</kbd> Eraser
         </span>
         <span className="flex items-center gap-1">
-          <kbd className="px-1.5 py-0.5 rounded bg-[#1a1a1c] border border-[#2a2a2c] font-mono text-[10px] text-[#a1a1aa]">R</kbd> Box
+          <kbd className="px-1.5 py-0.5 rounded bg-slate-950 border border-slate-800 font-mono text-[10px] text-slate-300">R</kbd> Box
         </span>
         <span className="flex items-center gap-1">
-          <kbd className="px-1.5 py-0.5 rounded bg-[#1a1a1c] border border-[#2a2a2c] font-mono text-[10px] text-[#a1a1aa]">Space</kbd> Pan
+          <kbd className="px-1.5 py-0.5 rounded bg-slate-950 border border-slate-800 font-mono text-[10px] text-slate-300">Space</kbd> Pan
         </span>
       </div>
     </main>

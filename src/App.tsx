@@ -418,7 +418,7 @@ export default function App() {
   };
 
   return (
-    <div className="flex flex-col h-screen w-screen bg-[#0a0a0b] text-[#e2e2e4] overflow-hidden font-sans select-none">
+    <div className="flex flex-col h-screen w-screen bg-slate-950 text-slate-100 overflow-hidden font-sans select-none">
       {/* Top Header */}
       <Header
         method={method}

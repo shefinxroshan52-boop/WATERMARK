@@ -77,8 +77,8 @@ export const Toolbar: React.FC<ToolbarProps> = ({
   };
 
   return (
-    <aside className="w-80 border-r border-[#2a2a2c] bg-[#111112] flex flex-col justify-between p-6 overflow-y-auto select-none shrink-0 z-20">
-      <div className="space-y-6">
+    <aside className="w-80 border-r border-slate-800 bg-slate-900/95 flex flex-col justify-between p-4 overflow-y-auto select-none shrink-0 z-20">
+      <div className="space-y-5">
         {/* Upload Button */}
         <div>
           <input
@@ -92,26 +92,26 @@ export const Toolbar: React.FC<ToolbarProps> = ({
           <button
             id="upload-image-btn"
             onClick={() => fileInputRef.current?.click()}
-            className="w-full py-2.5 px-4 rounded-xl bg-[#161618] hover:bg-[#1f1f21] text-[#e2e2e4] font-medium text-xs border border-[#2a2a2c] hover:border-[#3a3a3c] transition-colors flex items-center justify-center gap-2 shadow-sm active:scale-[0.99]"
+            className="w-full py-2.5 px-3.5 rounded-xl bg-slate-800 hover:bg-slate-750 text-slate-100 font-semibold text-xs border border-slate-700 hover:border-slate-600 transition-all flex items-center justify-center gap-2 shadow-sm hover:shadow active:scale-[0.99]"
           >
-            <Upload className="w-4 h-4 text-[#6366f1]" />
+            <Upload className="w-4 h-4 text-indigo-400" />
             <span>Upload New Image</span>
           </button>
         </div>
 
         {/* Mask Drawing Tools */}
         <div>
-          <h3 className="text-[11px] uppercase tracking-widest font-bold text-[#71717a] mb-3 block">
-            Tool Selection
-          </h3>
-          <div className="grid grid-cols-5 gap-1.5 bg-[#161618] p-1.5 rounded-xl border border-[#2a2a2c]">
+          <label className="text-[11px] font-bold tracking-wider text-slate-400 uppercase mb-2 block">
+            Masking Selection Tools
+          </label>
+          <div className="grid grid-cols-5 gap-1.5 bg-slate-950 p-1.5 rounded-xl border border-slate-800">
             <button
               id="tool-brush-btn"
               onClick={() => setTool('brush')}
-              className={`flex flex-col items-center justify-center py-2 px-1 rounded-lg text-[10px] font-medium transition-all ${
+              className={`flex flex-col items-center justify-center py-2 px-1 rounded-lg text-[11px] font-medium transition-all ${
                 tool === 'brush'
-                  ? 'bg-[#2a2a2c] border border-[#6366f1]/50 text-white'
-                  : 'text-[#71717a] hover:text-[#e2e2e4] hover:bg-[#1f1f21]'
+                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
+                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-850'
               }`}
               title="Brush Tool (Shortcut: B)"
             >
@@ -122,10 +122,10 @@ export const Toolbar: React.FC<ToolbarProps> = ({
             <button
               id="tool-eraser-btn"
               onClick={() => setTool('eraser')}
-              className={`flex flex-col items-center justify-center py-2 px-1 rounded-lg text-[10px] font-medium transition-all ${
+              className={`flex flex-col items-center justify-center py-2 px-1 rounded-lg text-[11px] font-medium transition-all ${
                 tool === 'eraser'
-                  ? 'bg-[#2a2a2c] border border-[#6366f1]/50 text-white'
-                  : 'text-[#71717a] hover:text-[#e2e2e4] hover:bg-[#1f1f21]'
+                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
+                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-850'
               }`}
               title="Eraser Tool (Shortcut: E)"
             >
@@ -136,10 +136,10 @@ export const Toolbar: React.FC<ToolbarProps> = ({
             <button
               id="tool-rectangle-btn"
               onClick={() => setTool('rectangle')}
-              className={`flex flex-col items-center justify-center py-2 px-1 rounded-lg text-[10px] font-medium transition-all ${
+              className={`flex flex-col items-center justify-center py-2 px-1 rounded-lg text-[11px] font-medium transition-all ${
                 tool === 'rectangle'
-                  ? 'bg-[#2a2a2c] border border-[#6366f1]/50 text-white'
-                  : 'text-[#71717a] hover:text-[#e2e2e4] hover:bg-[#1f1f21]'
+                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
+                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-850'
               }`}
               title="Box Selection Tool (Shortcut: R)"
             >
@@ -150,10 +150,10 @@ export const Toolbar: React.FC<ToolbarProps> = ({
             <button
               id="tool-lasso-btn"
               onClick={() => setTool('lasso')}
-              className={`flex flex-col items-center justify-center py-2 px-1 rounded-lg text-[10px] font-medium transition-all ${
+              className={`flex flex-col items-center justify-center py-2 px-1 rounded-lg text-[11px] font-medium transition-all ${
                 tool === 'lasso'
-                  ? 'bg-[#2a2a2c] border border-[#6366f1]/50 text-white'
-                  : 'text-[#71717a] hover:text-[#e2e2e4] hover:bg-[#1f1f21]'
+                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
+                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-850'
               }`}
               title="Lasso Polygon Tool (Shortcut: L)"
             >
@@ -164,10 +164,10 @@ export const Toolbar: React.FC<ToolbarProps> = ({
             <button
               id="tool-pan-btn"
               onClick={() => setTool('pan')}
-              className={`flex flex-col items-center justify-center py-2 px-1 rounded-lg text-[10px] font-medium transition-all ${
+              className={`flex flex-col items-center justify-center py-2 px-1 rounded-lg text-[11px] font-medium transition-all ${
                 tool === 'pan'
-                  ? 'bg-[#2a2a2c] border border-[#6366f1]/50 text-white'
-                  : 'text-[#71717a] hover:text-[#e2e2e4] hover:bg-[#1f1f21]'
+                  ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
+                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-850'
               }`}
               title="Pan Canvas (Shortcut: H or Hold Space)"
             >
@@ -178,12 +178,10 @@ export const Toolbar: React.FC<ToolbarProps> = ({
         </div>
 
         {/* Brush Size Slider with preview ring */}
-        <div className="bg-[#161618] p-4 rounded-xl border border-[#2a2a2c] space-y-3">
-          <div className="flex items-center justify-between">
-            <h3 className="text-[11px] uppercase tracking-widest font-bold text-[#71717a]">
-              Brush Settings
-            </h3>
-            <span className="text-xs font-mono text-[#a1a1aa]">{brushSize}px</span>
+        <div className="bg-slate-950/60 p-3 rounded-xl border border-slate-800 space-y-2.5">
+          <div className="flex items-center justify-between text-xs">
+            <span className="font-semibold text-slate-300">Brush Diameter</span>
+            <span className="font-mono text-indigo-400 font-bold">{brushSize}px</span>
           </div>
 
           <div className="flex items-center gap-3">
@@ -194,12 +192,12 @@ export const Toolbar: React.FC<ToolbarProps> = ({
               max="160"
               value={brushSize}
               onChange={(e) => setBrushSize(parseInt(e.target.value, 10))}
-              className="w-full accent-[#6366f1] h-1.5 bg-[#2a2a2c] rounded-lg cursor-pointer"
+              className="w-full accent-indigo-500 h-1.5 bg-slate-800 rounded-lg cursor-pointer"
             />
             {/* Visual circle dot */}
-            <div className="w-7 h-7 rounded-lg bg-[#111112] border border-[#2a2a2c] flex items-center justify-center shrink-0">
+            <div className="w-7 h-7 rounded-lg bg-slate-900 border border-slate-800 flex items-center justify-center shrink-0">
               <div
-                className="rounded-full bg-[#6366f1]"
+                className="rounded-full bg-rose-500"
                 style={{
                   width: `${Math.max(3, Math.min(22, (brushSize / 160) * 22))}px`,
                   height: `${Math.max(3, Math.min(22, (brushSize / 160) * 22))}px`,
@@ -210,19 +208,19 @@ export const Toolbar: React.FC<ToolbarProps> = ({
         </div>
 
         {/* Inpaint Engine Parameters */}
-        <div className="space-y-3 bg-[#161618] p-4 rounded-xl border border-[#2a2a2c]">
+        <div className="space-y-3 bg-slate-950/60 p-3 rounded-xl border border-slate-800">
           <div className="flex items-center justify-between">
-            <h3 className="text-[11px] uppercase tracking-widest font-bold text-[#71717a]">
+            <span className="text-[11px] font-bold tracking-wider text-slate-400 uppercase">
               Inpaint Parameters
-            </h3>
-            <Sliders className="w-3.5 h-3.5 text-[#71717a]" />
+            </span>
+            <Sliders className="w-3.5 h-3.5 text-slate-500" />
           </div>
 
           {/* Inpaint Radius */}
           <div className="space-y-1.5">
             <div className="flex items-center justify-between text-xs">
-              <span className="text-[11px] font-medium text-[#a1a1aa]">Inpaint Radius</span>
-              <span className="font-mono text-xs text-[#e2e2e4]">{inpaintRadius}px</span>
+              <span className="text-slate-300">Inpaint Radius</span>
+              <span className="font-mono text-indigo-400 font-bold">{inpaintRadius}px</span>
             </div>
             <input
               id="inpaint-radius-slider"
@@ -231,18 +229,18 @@ export const Toolbar: React.FC<ToolbarProps> = ({
               max="35"
               value={inpaintRadius}
               onChange={(e) => setInpaintRadius(parseInt(e.target.value, 10))}
-              className="w-full accent-[#6366f1] h-1.5 bg-[#2a2a2c] rounded-lg cursor-pointer"
+              className="w-full accent-indigo-500 h-1.5 bg-slate-800 rounded-lg cursor-pointer"
             />
-            <p className="text-[10px] text-[#71717a]">
+            <p className="text-[10px] text-slate-500">
               Radius of neighborhood pixels sampled for inpainting reconstruction.
             </p>
           </div>
 
           {/* Mask Dilation / Fringe Expansion */}
-          <div className="space-y-1.5 pt-2 border-t border-[#2a2a2c]">
+          <div className="space-y-1.5 pt-1 border-t border-slate-800/80">
             <div className="flex items-center justify-between text-xs">
-              <span className="text-[11px] font-medium text-[#a1a1aa]">Edge Feather / Dilation</span>
-              <span className="font-mono text-xs text-[#e2e2e4]">+{maskDilation}px</span>
+              <span className="text-slate-300">Edge Feather / Dilation</span>
+              <span className="font-mono text-indigo-400 font-bold">+{maskDilation}px</span>
             </div>
             <input
               id="mask-dilation-slider"
@@ -251,17 +249,17 @@ export const Toolbar: React.FC<ToolbarProps> = ({
               max="8"
               value={maskDilation}
               onChange={(e) => setMaskDilation(parseInt(e.target.value, 10))}
-              className="w-full accent-[#6366f1] h-1.5 bg-[#2a2a2c] rounded-lg cursor-pointer"
+              className="w-full accent-indigo-500 h-1.5 bg-slate-800 rounded-lg cursor-pointer"
             />
-            <p className="text-[10px] text-[#71717a]">
-              Expands mask boundary slightly to eliminate residual watermark glow.
+            <p className="text-[10px] text-slate-500">
+              Expands mask boundary slightly to eliminate residual watermark glow or edge lines.
             </p>
           </div>
         </div>
 
         {/* Mask Overlay Color */}
-        <div className="bg-[#161618] p-4 rounded-xl border border-[#2a2a2c] space-y-2">
-          <label className="text-[11px] uppercase tracking-widest font-bold text-[#71717a] block">
+        <div className="bg-slate-950/60 p-3 rounded-xl border border-slate-800 space-y-2">
+          <label className="text-xs font-semibold text-slate-300 block">
             Mask Highlight Color
           </label>
           <div className="flex items-center gap-2">
@@ -271,7 +269,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
                 id={`mask-color-${c}-btn`}
                 onClick={() => setMaskColor(c)}
                 className={`w-6 h-6 rounded-full ${maskColorMap[c].bg} border-2 transition-all ${
-                  maskColor === c ? 'scale-110 border-white shadow-md' : 'border-transparent opacity-60 hover:opacity-100'
+                  maskColor === c ? 'scale-110 border-white shadow-md' : 'border-transparent opacity-70 hover:opacity-100'
                 }`}
                 title={maskColorMap[c].name}
               />
@@ -285,10 +283,10 @@ export const Toolbar: React.FC<ToolbarProps> = ({
             id="smart-detect-btn"
             onClick={onAutoDetect}
             disabled={!hasImage || isProcessing}
-            className="py-2.5 px-3 rounded-lg bg-[#161618] hover:bg-[#1f1f21] text-[#a1a1aa] hover:text-[#e2e2e4] text-xs font-medium border border-[#2a2a2c] hover:border-[#3a3a3c] flex items-center justify-center gap-1.5 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+            className="py-2 px-3 rounded-xl bg-slate-800 hover:bg-slate-750 text-slate-200 text-xs font-semibold border border-slate-700/60 flex items-center justify-center gap-1.5 transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
             title="Automatically detect text watermarks and corner stamps"
           >
-            <Wand2 className="w-3.5 h-3.5 text-[#6366f1]" />
+            <Wand2 className="w-3.5 h-3.5 text-indigo-400" />
             <span>Auto Detect</span>
           </button>
 
@@ -296,7 +294,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
             id="clear-mask-btn"
             onClick={onClearMask}
             disabled={!hasMaskStrokes || isProcessing}
-            className="py-2.5 px-3 rounded-lg bg-[#161618] hover:bg-rose-950/30 text-[#a1a1aa] hover:text-rose-400 text-xs font-medium border border-[#2a2a2c] hover:border-rose-900/40 flex items-center justify-center gap-1.5 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+            className="py-2 px-3 rounded-xl bg-slate-800 hover:bg-rose-950/40 text-slate-200 hover:text-rose-400 text-xs font-semibold border border-slate-700/60 hover:border-rose-800/40 flex items-center justify-center gap-1.5 transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed"
             title="Clear all painted mask strokes"
           >
             <Trash2 className="w-3.5 h-3.5" />
@@ -306,40 +304,40 @@ export const Toolbar: React.FC<ToolbarProps> = ({
       </div>
 
       {/* Primary Action Button: Remove Watermark */}
-      <div className="pt-6 border-t border-[#2a2a2c] space-y-2">
+      <div className="pt-4 border-t border-slate-800 space-y-2">
         <button
           id="execute-inpaint-btn"
           onClick={onProcessInpaint}
           disabled={isProcessing || !hasImage || (!hasMaskStrokes && !hasImage)}
-          className={`w-full py-3 px-4 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 transition-all shadow-lg ${
+          className={`w-full py-3.5 px-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg transition-all ${
             isProcessing
-              ? 'bg-[#2a2a2c] text-[#71717a] cursor-wait'
+              ? 'bg-slate-800 text-slate-400 cursor-wait'
               : method === 'ai'
-              ? 'bg-gradient-to-r from-[#6366f1] to-[#a855f7] hover:opacity-95 text-white shadow-indigo-500/10 active:scale-[0.98]'
-              : 'bg-[#6366f1] hover:bg-[#4f46e5] text-white shadow-indigo-500/10 active:scale-[0.98]'
+              ? 'bg-gradient-to-r from-purple-600 via-indigo-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white shadow-purple-600/25 active:scale-[0.98]'
+              : 'bg-indigo-600 hover:bg-indigo-500 text-white shadow-indigo-600/30 active:scale-[0.98]'
           }`}
         >
           {isProcessing ? (
             <>
-              <RefreshCw className="w-4 h-4 animate-spin text-[#6366f1]" />
+              <RefreshCw className="w-4 h-4 animate-spin text-indigo-400" />
               <span>Inpainting in progress...</span>
             </>
           ) : method === 'ai' ? (
             <>
-              <Sparkles className="w-4 h-4 text-white" />
-              <span>Process Selection (AI)</span>
+              <Sparkles className="w-4 h-4 text-amber-300" />
+              <span>AI Deep Remove</span>
             </>
           ) : (
             <>
-              <Zap className="w-4 h-4 text-white" />
-              <span>Process Selection</span>
+              <Zap className="w-4 h-4 text-cyan-300" />
+              <span>Remove Watermark</span>
             </>
           )}
         </button>
 
         {!hasMaskStrokes && hasImage && (
-          <p className="text-[11px] text-[#a1a1aa] text-center flex items-center justify-center gap-1">
-            <AlertCircle className="w-3 h-3 shrink-0 text-amber-400" />
+          <p className="text-[11px] text-amber-400/90 text-center flex items-center justify-center gap-1">
+            <AlertCircle className="w-3 h-3 shrink-0" />
             <span>Paint over the watermark to remove</span>
           </p>
         )}
