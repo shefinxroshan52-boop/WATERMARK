@@ -1,0 +1,6 @@
+{
+  "name": "Watermark Remover",
+  "description": "High-performance image watermark and object remover powered by client-side OpenCV.js inpainting algorithms and AI deep-clean enhancement.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
